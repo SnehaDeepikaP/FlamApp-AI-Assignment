@@ -10,7 +10,10 @@
 
 **Fit quality:** RMS residual ≈ 3.5×10⁻⁶ over all 1500 points — i.e. an essentially exact fit (the tiny residual is just floating-point rounding from the 6-decimal precision in `xy_data.csv`).
 
-### Desmos / LaTeX equation (as requested in the assignment)
+## Desmos Link
+https://www.desmos.com/calculator/juqw69elxn
+
+### LaTeX equation
 
 ```
 \left(t*\cos(0.5235987756)-e^{0.03\left|t\right|}\cdot\sin(0.3t)\sin(0.5235987756)+55,42+t*\sin(0.5235987756)+e^{0.03\left|t\right|}\cdot\sin(0.3t)\cos(0.5235987756)\right)
@@ -65,12 +68,11 @@ minimize `Σ residual_i²` over `θ ∈ (0°, 50°)`, `M ∈ (−0.05, 0.05)`, `
 The naive approach to solving this (such as taking t at each point to be an independent variable or performing nearest neighbor "distance from point to curve" fitting) would require optimization in greater than 1500 dimensions. The smart algorithm mentioned above succeeds in analytically eliminating all 1500 nuisance parameters t, leaving us with a simple 3D least squares problem, which is quick to solve.
 
 ## Files
-- `flam_solution.py` — full fitting script 
-- `xy_data.csv` — original data 
-- `fit_overlay.png` — verification plot: fitted curve overlaid on given data points
+- `flam_solution.py` - full fitting script 
+- `xy_data.csv` - original data 
+- `fit_overlay.png` - verification plot: fitted curve overlaid on given data points
+- `Output of flam_solution.py` - output values for flam_solution.py
 
-## Desmos Link
-https://www.desmos.com/calculator/juqw69elxn
 
 ## How to run
 ```bash
