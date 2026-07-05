@@ -1,6 +1,6 @@
-# AI R&D Assignment — Parametric Curve Fitting
+# AI R&D Assignment - Parametric Curve Fitting
 
-## Result — Unknown variables
+## Result - Unknown variables
 
 | Variable | Value |
 |---|---|
@@ -34,7 +34,7 @@ x(t) = t·cos(θ) − e^(M|t|)·sin(0.3t)·sin(θ) + X
 y(t) = 42 + t·sin(θ) + e^(M|t|)·sin(0.3t)·cos(θ)
 ```
 
-The dataset gives 1500 `(x, y)` points, but **not** the `t` value that produced each point — so naively this looks like a (1500 + 3)-parameter fitting problem (one hidden `t` per point, plus θ, M, X).
+The dataset gives 1500 `(x, y)` points, but **not** the `t` value that produced each point - so naively this looks like a (1500 + 3)-parameter fitting problem (one hidden `t` per point, plus θ, M, X).
 
 **Key simplification.** Define `u = e^(M|t|)·sin(0.3t)`. Then the equations are exactly a 2D **rotation by θ** applied to the vector `(t, u)`, followed by a translation by `(X, 42)`:
 
@@ -57,7 +57,7 @@ residual_i(θ, M, X) = u_i − e^(M|t_i|)·sin(0.3·t_i)
 
 minimize `Σ residual_i²` over `θ ∈ (0°, 50°)`, `M ∈ (−0.05, 0.05)`, `X ∈ (0, 100)`.
 
-### Numerical solution steps (`solution.py`)
+### Numerical solution steps (`flam_solution.py`)
 1. Load `xy_data.csv` file with 1500 points.
 2. Do global optimization for 3D parameter space within bounds using `scipy.optimize.differential_evolution` (in order not to be stuck in local minimum because of oscillatory terms like `sin(0.3t)` and `sin/cos(θ)`).
 3. Do local optimization for best obtained point using `scipy.optimize.least_squares` (Levenberg-Marquardt-like algorithm) in order to obtain very accurate results.
